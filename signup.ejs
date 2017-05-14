@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><%= title %></title>
+		<link href="/css/style.css" rel="stylesheet">
+   </head>
+   <body>
+		<div class="container">
+			<div class="signup">
+			<h2>Sign Up</h2>
+		  
+			  <form method="post" action="/signup">
+				 <% if(typeof(errorMessage) !== 'undefined') {%>
+				 <span><%= errorMessage %></span>
+				 <% } %>
+					<label for="username"></label>
+					<input type="text" name="username" id="username"
+					   placeholder="Username" required="true"/>
+				 </p>
+				 <p>
+					<label for="password"></label>
+					<input type="password" name="password" id="password"
+					   placeholder="Password" required="true"/>
+				 </p>
+				 <p>
+					<input type="submit" name="signup" id="signup" value="sign up"/>
+					<a href="/signin" title="sign in" id="signinlink">Sign In</a>
+				 </p>
+			  </form>
+			</div>
+		</div>
+   </body>
+</html>
