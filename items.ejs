@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><%= title%></title>
+		<link href="/css/style.css" rel="stylesheet">
+		<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+		
+		<script>
+		var checkCount=0
+		var maxChecks=1
+		function limitCheck(obj){
+			if(obj.checked){
+				checkCount=checkCount+1
+			} else {
+				checkCount=checkCount-1
+			}
+			if(checkCount > maxChecks){
+				obj.checked = false
+				checkCount = checkCount-1
+				
+				alert("Please select only 1 item.");
+				
+			}
+		}
+		</script>
+		
+    </head>
+    <body>
+	
+	<nav class="menu">
+		<ul>
+		  <li><a href="/" id="home">Home</a></li>
+		  <li><a class="active" href="/items" id="items">Items</a></li>
+		  <li><a href="/request" id="request">Requests</a></li>
+		  <li><a href="/notifs" id="notification">Notifications</a></li>
+		  <li><a href="/signout" id="signout">Sign Out</a></li>
+		</ul>
+	</nav>
+		
+		<div class="items">
+		<form name="section" method="post" action="/items" >
+		 <div class="data-table-display">
+            <table border="1" cellpadding="7" cellspacing="3">
+                <tr>
+                    
+                    <th>Item Name</th>
+                    <th>Description</th>
+					<th>Type</th>
+					<th>Quantity</th>
+					<th>Item Owner</th>
+					<th></th>
+
+                </tr>
+				
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+			
+                <tr>
+					
+                    <td><%=data[i].product_name%></td>
+                    <td><%=data[i].product_description%></td>
+					<td><%=data[i].product_type%></td>
+					<td><%=data[i].product_quantity%></td>
+					<td><%=data[i].product_owner%></td>
+					
+					<td><input id="check" type="checkbox" value="<%=data[i].product_id%>" name="selecteditem" onclick="limitCheck(this)">Claim Item</input></td>
+					</form>
+			
+				</tr>
+				<% }
+            
+				}%> 
+				
+            </table>
+			
+		</div><br/>
+		
+		
+		<p><input type="submit" value="Check Out" name="submit" id="checkout"></input></p>
+		</form>
+	</div>
+	 
+    </body>
+</html>
+
+
+
+
